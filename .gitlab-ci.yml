@@ -44,7 +44,7 @@ weekly_update_and_tests:
     - git config --global user.email "update@nevercodealone.de"
     - git config --global user.name "NCA Updater"
     - GIT_REPO_URL=$(git remote get-url origin)
-    - GIT_REPO_AUTH_URL=$(echo $GIT_REPO_URL | sed "s#://gitlab-ci-token:#://updater:$autoupdater@#")
+    - GIT_REPO_AUTH_URL=$(echo $GIT_REPO_URL | sed "s#://gitlab-ci-token:[^@]*@#://updater:$autoupdater@#")
     - git remote set-url origin $GIT_REPO_AUTH_URL
     - git add package-lock.json
     - git commit -m "Automatically update package-lock.json"
