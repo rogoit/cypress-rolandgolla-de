@@ -50,6 +50,7 @@ weekly_update_and_tests:
     - git commit -m "Automatically update package-lock.json"
     - git checkout main
     - git push origin main
+  cache: {}
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   tags:
