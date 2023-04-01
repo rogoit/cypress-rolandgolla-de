@@ -36,29 +36,11 @@ run_cypress_tests:
   tags:
     - docker1
 
-install_dependencies_weekly:
-  image: cypress/browsers:node12.14.1-chrome85-ff81
+weekly_update_and_tests:
   stage: update
   script:
     - npm update
-  rules:
-    - if: '$SCHEDULE_TYPE == "weekly_updates"'
-  tags:
-    - docker1
-
-run_tests_after_update:
-  stage: update
-  script:
     - npx cypress run
-  rules:
-    - if: '$SCHEDULE_TYPE == "weekly_updates"'
-      when: on_success
-  tags:
-    - docker1
-
-commit_and_push_updates:
-  stage: update
-  script:
     - git config --global user.email "update@nevercodealone.de"
     - git config --global user.name "NCA Updater"
     - GIT_REPO_URL=$(git remote get-url origin)
@@ -70,6 +52,5 @@ commit_and_push_updates:
     - git push origin main
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
-      when: on_success
   tags:
     - docker1
