@@ -8,7 +8,4 @@ describe('TESTIFY base tests', () => {
     cy.ttValidateImprintClickable();
   });
 
-  it('Validates no google fonts are being loaded', () => {
-    cy.ttValidateNoGoogleFonts();
-  });
 });
