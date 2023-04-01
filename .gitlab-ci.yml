@@ -21,7 +21,7 @@ install_dependencies:
   image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: test
   script:
-    - npm ci
+    - npm install
   only:
     - schedules
   tags:
@@ -41,9 +41,7 @@ run_cypress_tests:
 update_dependencies:
   stage: update
   script:
-    - npm install -g npm-check-updates
-    - ncu -u
-    - npm install
+    - npm update
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   variables:
