@@ -40,8 +40,8 @@ run_cypress_tests:
 update_dependencies:
   stage: update
   script:
-    - OUTDATED_PACKAGES=$(npm outdated --parseable | cut -d: -f2)
     - |
+      OUTDATED_PACKAGES=$(npm outdated --parseable | cut -d: -f2)
       for package in $OUTDATED_PACKAGES; do
         echo "Updating $package to the latest version..."
         npm install "$package"@latest
