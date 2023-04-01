@@ -20,8 +20,6 @@ install_dependencies_daily:
   stage: test
   script:
     - npm install
-  only:
-    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "daily_tests"'
   tags:
@@ -43,8 +41,6 @@ install_dependencies_weekly:
   stage: update
   script:
     - npm update
-  only:
-    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   tags:
@@ -54,8 +50,6 @@ run_tests_after_update:
   stage: update
   script:
     - npx cypress run
-  only:
-    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
       when: on_success
@@ -74,8 +68,6 @@ commit_and_push_updates:
     - git commit -m "Automatically update package-lock.json"
     - git checkout main
     - git push origin main
-  only:
-    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
       when: on_success
