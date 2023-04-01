@@ -46,9 +46,10 @@ weekly_update_and_tests:
     - GIT_REPO_URL=$(git remote get-url origin)
     - GIT_REPO_AUTH_URL=$(echo $GIT_REPO_URL | sed "s#://gitlab-ci-token:[^@]*@#://updater:$autoupdater@#")
     - git remote set-url origin $GIT_REPO_AUTH_URL
+    - git checkout main
+    - git pull origin main
     - git add package-lock.json
     - git commit -m "Automatically update package-lock.json"
-    - git checkout main
     - git push origin main
   cache: {}
   rules:
