@@ -7,7 +7,6 @@ stages:
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
   CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
-  CI_CACHE_FOLDER: '$CI_PROJECT_DIR/.cache'
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -15,17 +14,16 @@ cache:
     - .cache/*
     - cache/Cypress
     - node_modules
-    - build
 
-install_dependencies:
+install_dependencies_daily:
   image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: test
   script:
     - npm install
+  only:
+    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "daily_tests"'
-  variables:
-    SCHEDULE_TYPE: "daily_tests"
   tags:
     - docker1
 
@@ -40,15 +38,15 @@ run_cypress_tests:
   tags:
     - docker1
 
-update_dependencies:
+install_dependencies_weekly:
+  image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: update
   script:
     - npm update
+  only:
+    - schedules
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
-  variables:
-    SCHEDULE_TYPE: "weekly_updates"
-  when: on_success
   tags:
     - docker1
 
@@ -58,7 +56,9 @@ run_tests_after_update:
     - npx cypress run
   only:
     - schedules
-  when: on_success
+  rules:
+    - if: '$SCHEDULE_TYPE == "weekly_updates"'
+      when: on_success
   tags:
     - docker1
 
@@ -76,6 +76,8 @@ commit_and_push_updates:
     - git push origin main
   only:
     - schedules
-  when: on_success
+  rules:
+    - if: '$SCHEDULE_TYPE == "weekly_updates"'
+      when: on_success
   tags:
     - docker1
