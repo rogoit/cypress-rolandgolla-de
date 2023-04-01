@@ -22,8 +22,10 @@ install_dependencies:
   stage: test
   script:
     - npm install
-  only:
-    - schedules
+  rules:
+    - if: '$SCHEDULE_TYPE == "daily_tests"'
+  variables:
+    SCHEDULE_TYPE: "daily_tests"
   tags:
     - docker1
 
@@ -46,6 +48,7 @@ update_dependencies:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   variables:
     SCHEDULE_TYPE: "weekly_updates"
+  when: on_success
   tags:
     - docker1
 
@@ -55,6 +58,7 @@ run_tests_after_update:
     - npx cypress run
   only:
     - schedules
+  when: on_success
   tags:
     - docker1
 
