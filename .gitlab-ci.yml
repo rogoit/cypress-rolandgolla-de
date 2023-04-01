@@ -7,6 +7,7 @@ stages:
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
   CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
+  CI_CACHE_FOLDER: '$CI_PROJECT_DIR/.cache'
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -20,7 +21,7 @@ install_dependencies:
   image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: test
   script:
-    - npm install
+    - npm ci
   only:
     - schedules
   tags:
@@ -40,12 +41,9 @@ run_cypress_tests:
 update_dependencies:
   stage: update
   script:
-    - |
-      OUTDATED_PACKAGES=$(npm outdated --parseable | cut -d: -f2)
-      for package in $OUTDATED_PACKAGES; do
-        echo "Updating $package to the latest version..."
-        npm install "$package"@latest
-      done
+    - npm install -g npm-check-updates
+    - ncu -u
+    - npm install
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   variables:
