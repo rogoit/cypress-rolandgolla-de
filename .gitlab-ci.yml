@@ -40,7 +40,12 @@ run_cypress_tests:
 update_dependencies:
   stage: update
   script:
-    - npm update
+    - OUTDATED_PACKAGES=$(npm outdated --parseable | cut -d: -f2)
+    - |
+      for package in $OUTDATED_PACKAGES; do
+        echo "Updating $package to the latest version..."
+        npm install "$package"@latest
+      done
   rules:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   variables:
