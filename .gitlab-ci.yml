@@ -43,8 +43,9 @@ weekly_update_and_tests:
     - npx cypress run
     - git config --global user.email "update@nevercodealone.de"
     - git config --global user.name "NCA Updater"
-    - git config --global credential.helper 'store --file .git-credentials'
-    - echo "https://${username}:${autoupdater}@git.nevercodealone.de" > .git-credentials
+    - GIT_REPO_URL=$(git remote get-url origin)
+    - GIT_REPO_AUTH_URL=$(echo $GIT_REPO_URL | sed "s#://gitlab-ci-token:[^@]*@#://${username}:${autoupdater}@#")
+    - git remote set-url origin $GIT_REPO_AUTH_URL
     - git add package-lock.json
     - git commit -m "Automatically update package-lock.json"
     - git checkout main
