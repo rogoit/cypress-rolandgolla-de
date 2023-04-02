@@ -56,3 +56,4 @@ weekly_update_and_tests:
     - if: '$SCHEDULE_TYPE == "weekly_updates"'
   tags:
     - docker1
+
