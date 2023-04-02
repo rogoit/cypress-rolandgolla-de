@@ -8,4 +8,12 @@ describe('TESTIFY base tests', () => {
     cy.ttValidateImprintClickable();
   });
 
+  it('Internal links status ok', () => {
+    cy.ttEveryInternalLinkStatusOk();  
+  })  
+  
+  it('Internal pages status ok', () => {
+    cy.ttEveryInternalLinkStatusOk();  
+  })  
+
 });
