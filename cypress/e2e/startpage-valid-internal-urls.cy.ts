@@ -9,11 +9,10 @@ describe('TESTIFY base tests', () => {
   });
 
   it('Internal links status ok', () => {
-    cy.ttEveryInternalLinkStatusOk();  
-  })  
-  
-  it('Internal pages status ok', () => {
-    cy.ttEveryInternalLinkStatusOk();  
-  })  
+    cy.ttEveryInternalLinkStatusOk();
+  });
 
+  it('Internal pages status ok', () => {
+    cy.ttEveryInternalLinkStatusOk();
+  });
 });

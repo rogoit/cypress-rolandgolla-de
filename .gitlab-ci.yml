@@ -6,7 +6,7 @@ stages:
 
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
-  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
+  CYPRESS_CACHE_FOLDER: '/root/.cache/Cypress'
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -27,12 +27,14 @@ install_dependencies_daily:
 
 run_cypress_tests:
   stage: test
+  before_script:
+    - npm ci
   script:
     - npx cypress run --record
   rules:
     - if: '$SCHEDULE_TYPE == "daily_tests"'
   variables:
-    SCHEDULE_TYPE: "daily_tests"
+    SCHEDULE_TYPE: 'daily_tests'
   tags:
     - docker1
 
