@@ -1,8 +1,3 @@
-import { defineConfig } from 'cypress';
-
-export default defineConfig({
-  e2e: {
-    baseUrl: 'https://rolandgolla.de'
-  },
-  viewportWidth: 1200
-});
+require('ts-node').register({ compilerOptions: { module: 'commonjs' } });
+const config = require('./cypress.config.base.ts');
+module.exports = config;
