@@ -1,17 +1,5 @@
 describe('a11y tests', () => {
-  it('TESTIFY ally plugin', () => {
-    cy.visit('/', {
-      onBeforeLoad(win) {
-        cy.stub(win, 'matchMedia')
-          .withArgs('(prefers-color-scheme: dark)')
-          .returns({
-            matches: true,
-          });
-      },
-    });
-
-    axeValidation();
-
+  it('Validate light mode', () => {
     cy.visit('/', {
       onBeforeLoad(win) {
         cy.stub(win, 'matchMedia')
@@ -24,7 +12,23 @@ describe('a11y tests', () => {
 
     axeValidation();
   });
+
+  it('Validate dark mode', () => {
+    cy.visit('/', {
+      onBeforeLoad(win) {
+        cy.stub(win, 'matchMedia')
+          .withArgs('(prefers-color-scheme: dark)')
+          .returns({
+            matches: true,
+          });
+      },
+    });
+
+    axeValidation();
+  })  
 });
+
+
 
 function axeValidation() {
   cy.injectAxe();
