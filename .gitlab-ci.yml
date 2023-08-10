@@ -1,4 +1,4 @@
-image: cypress/base:12
+image: cypress/base:16
 
 stages:
   - test
@@ -15,16 +15,6 @@ cache:
     - cache/Cypress
     - node_modules
     - build
-
-install_dependencies_daily:
-  image: cypress/browsers:node12.14.1-chrome85-ff81
-  stage: test
-  script:
-    - npm install
-  rules:
-    - if: '$SCHEDULE_TYPE == "daily_tests"'
-  tags:
-    - docker1
 
 run_cypress_tests:
   stage: test
