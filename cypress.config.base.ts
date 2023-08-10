@@ -8,4 +8,7 @@ export default defineConfig({
     TS_NODE_PROJECT: './tsconfig.json',
   },
   viewportWidth: 1200,
+  retries: {
+      runMode: 2
+  }  
 });
