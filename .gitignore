@@ -77,3 +77,6 @@ cypress/screenshots
 
 # GitLab
 cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/

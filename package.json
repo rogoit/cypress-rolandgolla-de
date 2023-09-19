@@ -33,9 +33,11 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.38.0",
+    "@types/node": "^20.6.1",
+    "axe-core": "^4.3.6",
     "cypress": "^12.2.0",
     "cypress-axe": "^1.4.0",
-    "axe-core": "^4.3.6",
     "cypress-ncatestify-plugin": "^2.0.23",
     "prettier": "2.8.8"
   }
