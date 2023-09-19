@@ -1,0 +1,26 @@
+[
+  {
+    "name": "startpage",
+    "url": "/"
+  },
+  {
+    "name": "ueberMich",
+    "url": "/ueber-mich"
+  },
+  {
+    "name": "speaker",
+    "url": "/speaker"
+  },
+  {
+    "name": "publikationen",
+    "url": "/publikationen"
+  },
+  {
+    "name": "developer-skills",
+    "url": "/developer-skills"
+  },
+  {
+    "name": "referenzen",
+    "url": "/referenzen"
+  }
+]

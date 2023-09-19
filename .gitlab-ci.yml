@@ -34,6 +34,7 @@ weekly_update_and_tests:
   script:
     - npm update
     - npx cypress run
+    - npx playwright test
     - git config --global user.email "update@nevercodealone.de"
     - git config --global user.name "NCA Updater"
     - GIT_REPO_URL=$(git remote get-url origin)
