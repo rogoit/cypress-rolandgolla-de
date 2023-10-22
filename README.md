@@ -1,25 +1,26 @@
-# Template for new Cypress repositories
+# CypressIO E2E website testing with focus on accessibility
 
-## Initialize a new repo
+We want to build better websites and validate the accessibility of our websites. This is a simple example of how to use CypressIO to test the usability of a website.
 
-`npm init with ncatestify/cypressio-base`
+## Getting Started
 
-Fill name and description.
+```bash
+npm install
+npx cypress open
+```
 
-The name is also the new directory.
+## Running the tests
 
-The following steps must then be performed.
+```bash
+npx cypress run
+```
 
-`cd <new-project>`
+Run a specific test
 
-`npm install`
+```bash
+npx cypress run --spec "cypress/e2e/navigation/main.spec.ts"
+```
 
-`npx cypress open` or `npm run cypress:open`
+### About the author
 
-### Open Source project by TESTIFY.TEAM
-
-[TESTIFY.TEAM](https://testify.team) - WE FIND BUGS. **AUTOMATED**.
-
-[German YouTube Cypress.IO Live Coding Playlist](https://www.youtube.com/watch?v=mb_PTxDeJKI&list=PLKrKzhBjw2Y9ceCxO3ollOc4eIVPAjiHs)
-
-[How to start with this Cypress.IO template on YouTube](https://youtu.be/b27PciNzreY)
+This project was created by [Roland Golla](https://rolandgolla.de/). Feel free to contact me on [LinkedIn](https://www.linkedin.com/in/rolandgolla/).
