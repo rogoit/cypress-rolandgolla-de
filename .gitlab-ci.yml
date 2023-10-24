@@ -21,7 +21,6 @@ run_cypress_tests:
   before_script:
     - npm ci
   script:
-    - exit 1
     - npx cypress run --record
   rules:
     - if: '$SCHEDULE_TYPE == "daily_tests"'
