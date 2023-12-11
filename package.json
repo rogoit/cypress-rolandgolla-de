@@ -23,7 +23,7 @@
   "homepage": "https://github.com/ncatestify/cypressio-base#readme",
   "dependencies": {
     "cypress-ncatestify-plugin": "^2.1.00",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.38.0",
